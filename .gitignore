@@ -1,0 +1,22 @@
+# Environment variables — NEVER commit these
+.env
+
+# Local ChromaDB — no longer needed, using Qdrant now
+profiles_db/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+
+# Logs
+*.log
+
+# Next.js
+frontend/.next/
+frontend/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db

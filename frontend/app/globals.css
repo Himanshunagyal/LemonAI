@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@tailwind utilities;
+
+:root {
+  --bg:       #0a0a0f;
+  --surface:  #111118;
+  --border:   #1e1e2e;
+  --accent:   #7fff6e;
+  --accent2:  #3ef0c8;
+  --muted:    #4a4a6a;
+  --text:     #e8e8f0;
+  --text-dim: #8888aa;
+  --danger:   #ff6b6b;
+  --warn:     #ffc107;
+
+  --font-syne: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Grid background */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(127,255,110,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127,255,110,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.5s ease both;
+}

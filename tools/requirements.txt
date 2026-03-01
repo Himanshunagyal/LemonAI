@@ -3,6 +3,5 @@ uvicorn[standard]
 groq
 tavily-python
 qdrant-client
-langchain-huggingface
-sentence-transformers
+fastembed
 python-dotenv

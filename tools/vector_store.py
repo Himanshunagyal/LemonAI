@@ -35,8 +35,7 @@ from qdrant_client.models import (
     Distance, VectorParams,
     PointStruct, Filter, FieldCondition, MatchValue
 )
-from langchain_huggingface import HuggingFaceEmbeddings
-
+from fastembed import TextEmbedding
 load_dotenv()
 
 # ============================================================
@@ -53,11 +52,10 @@ VECTOR_SIZE     = 384  # all-MiniLM-L6-v2 outputs 384-dimensional vectors
 # INITIALIZE EMBEDDING MODEL + QDRANT CLIENT
 # ============================================================
 
+from fastembed import TextEmbedding
+
 print("⏳ Loading embedding model...")
-embeddings_model = HuggingFaceEmbeddings(
-    model_name="all-MiniLM-L6-v2",
-    model_kwargs={"device": "cpu"}
-)
+embeddings_model = TextEmbedding(model_name="BAAI/bge-small-en-v1.5")
 print("✅ Embedding model ready\n")
 
 # Connect to Qdrant Cloud
@@ -140,7 +138,7 @@ def add_profile(profile: dict, message: str = "") -> dict:
     profile_text = build_profile_text(profile)
 
     # ── Create embedding ──
-    vector = embeddings_model.embed_query(profile_text)
+    vector = list(embeddings_model.embed(profile_text))[0].tolist()
 
     # ── Build payload (metadata) ──
     # Qdrant calls metadata "payload" — flat dict, same rules
@@ -191,8 +189,8 @@ def search_similar_profiles(query: str, n_results: int = 5) -> list:
     n_results = min(n_results, total)
 
     # Embed the query
-    query_vector = embeddings_model.embed_query(query)
-
+    query_vector = list(embeddings_model.embed(query))[0].tolist()
+    
     # Search Qdrant
     results = client.search(
         collection_name=COLLECTION_NAME,

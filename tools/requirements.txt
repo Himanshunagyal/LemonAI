@@ -5,3 +5,4 @@ tavily-python
 qdrant-client
 fastembed
 python-dotenv
+langchain-core

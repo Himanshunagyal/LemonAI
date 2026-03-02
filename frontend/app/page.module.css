@@ -318,3 +318,88 @@
   font-size: 15px;
   position: relative;
 }
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav {
+    padding: 16px 20px;
+  }
+
+  .hero {
+    padding: 48px 20px;
+    min-height: auto;
+  }
+
+  .heroGlow {
+    width: 300px;
+    height: 200px;
+  }
+
+  .h1 {
+    font-size: clamp(36px, 10vw, 64px);
+    letter-spacing: -2px;
+  }
+
+  .heroSub {
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btnPrimary, .btnGhost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .statsBar {
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  .statItem {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 16px;
+  }
+
+  .statItem:last-child { border-bottom: none; }
+
+  .section {
+    padding: 60px 20px;
+  }
+
+  .sectionTitle {
+    font-size: clamp(24px, 6vw, 36px);
+    margin-bottom: 40px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .step {
+    padding: 28px 20px;
+  }
+
+  .terminal {
+    margin: 40px 0 0;
+  }
+
+  .termBody {
+    padding: 16px;
+    font-size: 11px;
+    overflow-x: auto;
+  }
+
+  .cta {
+    padding: 60px 20px;
+  }
+
+  .ctaTitle {
+    letter-spacing: -1px;
+  }
+}
